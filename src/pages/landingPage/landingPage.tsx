@@ -8,6 +8,7 @@ const LandingPage: React.FC = (): ReactElement => {
       <h1>LandingPage</h1>
       <Link to={'/dashboard'}>Dashboard!</Link>
       <Link to={'/table'}>Table!</Link>
+      <Link to={'/login'}>login!</Link>
     </div>
   );
 };
