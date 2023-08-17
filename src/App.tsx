@@ -8,14 +8,11 @@ import Login from './pages/login/login';
 
 import { gapi } from 'gapi-script';
 
-const clientId =
-  '491578970927-2g10jp43gnv03kkuv9tsjjk2ct38u727.apps.googleusercontent.com';
-
 function App() {
   useEffect(() => {
     function start() {
       gapi.client.init({
-        clientId: clientId,
+        clientId: process.env.REACT_APP_GOOGLECLIENTID,
         scope: '',
       });
     }
