@@ -1,17 +1,17 @@
 import './App.css';
 import react from 'react';
-import {Routes, Route } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/landingPage/landingPage';
 import Dashboard from './pages/dashboard/dashboard';
+import WorkoutTable from './pages/workoutTable/workoutTable';
 function App() {
   return (
-    <div className="App">
-    
-     <Routes>
-      <Route path='/' element={<LandingPage/>}></Route>
-      <Route path='dashboard' element={<Dashboard/>}></Route>
-     </Routes>
-    
+    <div className='App'>
+      <Routes>
+        <Route path='/' element={<LandingPage />}></Route>
+        <Route path='dashboard' element={<Dashboard />}></Route>
+        <Route path='table' element={<WorkoutTable />}></Route>
+      </Routes>
     </div>
   );
 }
