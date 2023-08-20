@@ -1,0 +1,31 @@
+{
+  "workoutName": "A",
+  "workouts": [
+    {
+      "date": "20/08/2023",
+      "exercises": [
+        { "name": "deadlift", "reps": 4, "set": 10, "weight": 45 },
+        { "name": "squats", "reps": 4, "set": 10, "weight": 45 },
+        { "name": "bench", "reps": 4, "set": 10, "weight": 45 }
+      ]
+    },
+    {
+      "date": "18/08/2023",
+      "exercises": [
+        { "name": "deadlift", "reps": 4, "set": 10, "weight": 35 },
+        { "name": "squats", "reps": 4, "set": 10, "weight": 35 },
+        { "name": "bench", "reps": 4, "set": 10, "weight": 35 }
+      ]
+    }
+  ],
+  "best": [
+    { "name": "deadlift", "reps": 4, "set": 10, "weight": 45 },
+    { "name": "squats", "reps": 4, "set": 10, "weight": 45 },
+    { "name": "bench", "reps": 4, "set": 10, "weight": 45 }
+  ],
+  "start": [
+    { "name": "deadlift", "reps": 4, "set": 10, "weight": 35 },
+    { "name": "squats", "reps": 4, "set": 10, "weight": 35 },
+    { "name": "bench", "reps": 4, "set": 10, "weight": 35 }
+  ]
+}

@@ -14,6 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import GoogleLoginBtn from '../../components/googleLogin/gLogin';
 import GoogleLogoutBtn from '../../components/googleLogout/gLogout';
+import { authService } from '../../services/auth.service';
 
 interface iLoginProps {}
 
@@ -26,6 +27,13 @@ const Login: React.FC<iLoginProps> = () => {
       email: data.get('email'),
       password: data.get('password'),
     });
+    const username = `${data.get('email')}`;
+    const password = `${data.get('password')}`;
+    const userDetails = {
+      UserName: username,
+      Password: password,
+    };
+    authService.login(userDetails);
   };
 
   return (
@@ -87,7 +95,16 @@ const Login: React.FC<iLoginProps> = () => {
             >
               Sign In
             </Button>
-
+            <Button
+              fullWidth
+              variant='outlined'
+              sx={{ mt: 3, mb: 2 }}
+              onClick={() => {
+                authService.logout();
+              }}
+            >
+              Logout
+            </Button>
             <Grid container>
               <Grid item xs>
                 <Link href='#' variant='body2'>
