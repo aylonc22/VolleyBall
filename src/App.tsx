@@ -7,6 +7,7 @@ import WorkoutTable from './pages/workoutTable/workoutTable';
 import Login from './pages/login/login';
 
 import { gapi } from 'gapi-script';
+import Layout from './components/Layout/Layout';
 
 function App() {
   useEffect(() => {
@@ -23,10 +24,11 @@ function App() {
   return (
     <div className='App'>
       <Routes>
-        <Route path='/' element={<LandingPage />}></Route>
-        <Route path='dashboard' element={<Dashboard />}></Route>
-        <Route path='table' element={<WorkoutTable />}></Route>
-        <Route path='login' element={<Login />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/' element={<Layout />}>
+          <Route index element={<Dashboard />} />
+          <Route path='table' element={<WorkoutTable />} />
+        </Route>
       </Routes>
     </div>
   );

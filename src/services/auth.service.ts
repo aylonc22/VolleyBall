@@ -1,8 +1,17 @@
 import axios from 'axios';
+import api from './interceptor';
 
 interface userDetails {
   UserName: string;
   Password: string;
+}
+interface googleAccount {
+  email: string;
+  familyName: string;
+  givenName: string;
+  googleId: string;
+  imageUrl: string;
+  name: string;
 }
 
 const login = (userDetails: userDetails) => {
@@ -13,16 +22,33 @@ const login = (userDetails: userDetails) => {
       axios.defaults.headers.common[
         'Authorization'
       ] = `Bearer ${res.data.token}`;
-      localStorage.setItem('jwt', res.data.token);
-      localStorage.setItem('refresh', res.data.refreshToken);
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('refreshToken', res.data.refreshToken);
     })
     .catch((err) => {
-      console.log('err', err);
+      console.error('err', err);
     });
 };
 
+const googleLogin = (googleAccount: googleAccount) => {
+  try {
+    const response = api
+      .post('login', { Google: googleAccount })
+      .then((res) => {
+        console.log('res', res);
+        axios.defaults.headers.common[
+          'Authorization'
+        ] = `Bearer ${res.data.token}`;
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('refreshToken', res.data.refreshToken);
+      });
+  } catch (error) {
+    // Handle error or redirect to login
+  }
+};
+
 const logout = () => {
-  const refreshToken = localStorage.getItem('refresh');
+  const refreshToken = localStorage.getItem('refreshToken');
   const result = axios
     .post(`http://localhost:5000/logout`, {
       refreshToken: refreshToken,
@@ -36,11 +62,11 @@ const logout = () => {
 };
 
 const refreshToken = () => {
-  const refreshToken = localStorage.getItem('refresh');
+  const refreshToken = localStorage.getItem('refreshToken');
   const result = axios
     .post(`http://localhost:5000/token`, { Token: refreshToken })
     .then((res) => {
-      localStorage.setItem('jwt', res.data.accessToken);
+      localStorage.setItem('token', res.data.accessToken);
       axios.defaults.headers.common[
         'Authorization'
       ] = `Bearer ${res.data.accessToken}`;
@@ -52,6 +78,7 @@ const refreshToken = () => {
 
 export const authService = {
   login,
+  googleLogin,
   logout,
   refreshToken,
 };
