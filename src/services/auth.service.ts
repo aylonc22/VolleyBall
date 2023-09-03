@@ -14,8 +14,8 @@ interface googleAccount {
   name: string;
 }
 
-const login = (userDetails: userDetails) => {
-  const result = axios
+const login = async (userDetails: userDetails) => {
+  const result = await axios
     .post(`http://localhost:5000/login`, userDetails)
     .then((res) => {
       console.log('res', res);
@@ -24,10 +24,12 @@ const login = (userDetails: userDetails) => {
       ] = `Bearer ${res.data.token}`;
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('refreshToken', res.data.refreshToken);
+      return res.data.user;
     })
     .catch((err) => {
       console.error('err', err);
     });
+  return result;
 };
 
 const googleLogin = (googleAccount: googleAccount) => {

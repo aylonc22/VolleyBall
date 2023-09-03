@@ -1,8 +1,13 @@
 import volleyball from '../../assets/svg/volleyball.svg';
+import styles from './Header.module.scss';
 const Header: React.FC = () => {
   return (
-    <div>
-      <img src={volleyball} />
+    <div className={styles.container}>
+      <div className={styles.logo}>
+        <img src={volleyball} />
+      </div>
+      <div className={styles.search}></div>
+      <div className={styles.user}></div>
     </div>
   );
 };
