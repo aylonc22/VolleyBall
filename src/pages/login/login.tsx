@@ -12,8 +12,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
-import GoogleLoginBtn from '../../components/googleLogin/gLogin';
-import GoogleLogoutBtn from '../../components/googleLogout/gLogout';
 import { authService } from '../../services/auth.service';
 
 interface iLoginProps {}
@@ -119,8 +117,6 @@ const Login: React.FC<iLoginProps> = () => {
             </Grid>
           </Box>
         </Box>
-        <GoogleLoginBtn />
-        <GoogleLogoutBtn />
       </Container>
     </ThemeProvider>
   );
