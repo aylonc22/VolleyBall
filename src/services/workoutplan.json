@@ -1,0 +1,65 @@
+{
+  "workoutplanName": "AB",
+  "dateStarted": "20/08/2023",
+  "goalDate": "20/09/2023",
+  "workout": [
+    {
+      "workoutName": "A",
+      "exercises": [
+        {
+          "name": "deadlift",
+          "repititions": 4,
+          "set": 12,
+          "weight": 40,
+          "best": 40,
+          "start": 20
+        },
+        {
+          "name": "squats",
+          "repititions": 4,
+          "set": 10,
+          "weight": 60,
+          "best": 40,
+          "start": 20
+        },
+        {
+          "name": "bench",
+          "repititions": 3,
+          "set": 8,
+          "weight": 45,
+          "best": 40,
+          "start": 20
+        }
+      ]
+    },
+    {
+      "workoutName": "B",
+      "exercises": [
+        {
+          "name": "Biceps curls",
+          "repititions": 4,
+          "set": 12,
+          "weight": 10,
+          "best": 10,
+          "start": 5
+        },
+        {
+          "name": "Leg extentions",
+          "repititions": 4,
+          "set": 10,
+          "weight": 60,
+          "best": 60,
+          "start": 20
+        },
+        {
+          "name": "Lungges",
+          "repititions": 3,
+          "set": 8,
+          "weight": 45,
+          "best": 45,
+          "start": 20
+        }
+      ]
+    }
+  ]
+}
