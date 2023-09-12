@@ -1,7 +1,7 @@
 import axios from 'axios';
 import api from './interceptor';
 
-interface userDetails {
+export interface userDetails {
   UserName: string;
   Password: string;
 }

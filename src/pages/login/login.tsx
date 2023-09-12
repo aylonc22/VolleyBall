@@ -13,25 +13,33 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '../../services/auth.service';
+import { useAppDispatch } from '../../store/_rHooks';
+import { useDispatch, useSelector } from 'react-redux';
+import { userLogin } from '../../store/user';
+import { AppThunkDispatch } from '../../store/configureStore';
 
 interface iLoginProps {}
 
 const Login: React.FC<iLoginProps> = () => {
+  const dispatch = useDispatch<AppThunkDispatch>();
   const n = useNavigate();
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
     const username = `${data.get('email')}`;
     const password = `${data.get('password')}`;
     const userDetails = {
       UserName: username,
       Password: password,
     };
-    authService.login(userDetails);
+
+    const result = await dispatch(userLogin(userDetails));
+    console.log('result', result);
+
+    if (result.meta.requestStatus === 'fulfilled') n('/', { replace: true });
+    else {
+      alert(result.payload);
+    }
   };
 
   return (

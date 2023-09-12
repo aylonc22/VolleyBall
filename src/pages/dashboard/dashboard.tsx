@@ -5,13 +5,18 @@ import Button from '@mui/material/Button';
 import { requestService } from '../../services/request.service';
 import { authService } from '../../services/auth.service';
 import { LogedinUser } from '../../App';
+import { AppThunkDispatch } from '../../store/configureStore';
+import { useDispatch } from 'react-redux';
+import { createPlan } from '../../store/plans';
+import { userLogin } from '../../store/user';
 
 const Dashboard: React.FC = (): ReactElement => {
-  const [plan, setPlan] = useState<any>();
+  const dispatch = useDispatch<AppThunkDispatch>();
   const [user, setUser] = useState<LogedinUser>();
-  const createPlan = (name: string) => {
-    const pName = requestService.createWorkoutPlan(name);
-    setPlan(pName);
+  const addPlan = async (name: string) => {
+    const x = await dispatch(createPlan(name));
+    console.log('x', x);
+    // setPlan(pName);
   };
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -20,15 +25,13 @@ const Dashboard: React.FC = (): ReactElement => {
       <Link to={'/table'}>Table!</Link>
       <Link to={'/login'}>login!</Link>
       <Button
-        onClick={() => {
-          authService
-            .login({ UserName: 'nadav', Password: '1234' })
-            .then((res) => setUser(res));
+        onClick={async () => {
+          await dispatch(userLogin({ UserName: 'nadav', Password: '1234' }));
         }}
       >
         Login
       </Button>
-      <Button onClick={() => createPlan('Nadav')} variant='contained'>
+      <Button onClick={async () => await addPlan('Nadav')} variant='contained'>
         Create Plan
       </Button>
     </div>
