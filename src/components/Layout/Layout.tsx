@@ -6,9 +6,6 @@ interface iLayoutProps {}
 const Layout: React.FC<iLayoutProps> = () => {
   return (
     <div className={style.layout}>
-      <div className={style.header}>
-        <Header />
-      </div>
       <div className={style.sidebar}>
         <Sidebar />
       </div>

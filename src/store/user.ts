@@ -3,7 +3,8 @@ import { apiCallBegan } from './api';
 import { apiRequestFailed } from './tasks';
 import { authService, userDetails } from '../services/auth.service';
 import axios, { AxiosError } from 'axios';
-
+import planList from '../PlanNames.json';
+import { plansSlice } from './plans';
 export const userLogin = createAsyncThunk(
   'user/login',
   async (userDetails: userDetails, { rejectWithValue }) => {
@@ -39,6 +40,13 @@ const initialState: iUser = {
   error: null,
 };
 
+const plans = [
+  { id: 0, Name: 'Full body' },
+  { id: 1, Name: 'AB' },
+  { id: 2, Name: 'Push Pull' },
+  { id: 3, Name: 'Street' },
+];
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -59,8 +67,9 @@ const userSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    [`${userLogin.fulfilled}`]: (state, { payload }) => {
-      state.user = payload;
+    [`${userLogin.fulfilled}`]: (state, action) => {
+      state.user = { ...action.payload };
+      plansSlice.actions.setPlans(plans);
       state.loading = false;
     },
     [`${userLogin.rejected}`]: (state, { payload }) => {

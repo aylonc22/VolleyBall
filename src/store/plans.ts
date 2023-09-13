@@ -2,7 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export interface iPlansState {
-  plans: Plan[];
+  // plans: Plan[];
+  plans: any;
   loading: boolean;
   error: string | null;
 }
@@ -70,10 +71,15 @@ export const createPlan = createAsyncThunk(
   }
 );
 
-const plansSlice = createSlice({
+export const plansSlice = createSlice({
   name: 'plans',
   initialState,
-  reducers: {},
+  reducers: {
+    setPlans: (state, action) => {
+      console.log(action.payload);
+      state.plans = action.payload;
+    },
+  },
   extraReducers: {
     [`${getPlans.pending}`]: (state) => {
       state.loading = true;
@@ -94,7 +100,7 @@ const plansSlice = createSlice({
     [`${createPlan.fulfilled}`]: (state, { payload }) => {
       state.plans = [
         ...state.plans,
-        { id: payload.id, Name: payload.name, Workouts: [] },
+        // { id: payload.id, Name: payload.name, Workouts: [] },
       ];
       state.loading = false;
     },
@@ -104,5 +110,5 @@ const plansSlice = createSlice({
     },
   },
 });
-
+export const { setPlans } = plansSlice.actions;
 export default plansSlice.reducer;

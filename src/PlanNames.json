@@ -1,0 +1,8 @@
+{
+  "plans": [
+    { "id": 0, "Name": "Full body" },
+    { "id": 1, "Name": "AB" },
+    { "id": 2, "Name": "Push Pull" },
+    { "id": 3, "Name": "Street" }
+  ]
+}
