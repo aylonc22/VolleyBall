@@ -7,8 +7,9 @@ import { authService } from '../../services/auth.service';
 import { LogedinUser } from '../../App';
 import { AppThunkDispatch } from '../../store/configureStore';
 import { useDispatch } from 'react-redux';
-import { createPlan } from '../../store/plans';
+import { createPlan, setPlans } from '../../store/plans';
 import { userLogin } from '../../store/user';
+import tempPlans from '../../PlanNames.json';
 
 const Dashboard: React.FC = (): ReactElement => {
   const dispatch = useDispatch<AppThunkDispatch>();
@@ -27,6 +28,7 @@ const Dashboard: React.FC = (): ReactElement => {
       <Button
         onClick={async () => {
           await dispatch(userLogin({ UserName: 'nadav', Password: '1234' }));
+          dispatch(setPlans(tempPlans.plans));
         }}
       >
         Login

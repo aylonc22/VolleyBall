@@ -17,7 +17,8 @@ import { useAppDispatch } from '../../store/_rHooks';
 import { useDispatch, useSelector } from 'react-redux';
 import { userLogin } from '../../store/user';
 import { AppThunkDispatch } from '../../store/configureStore';
-
+import { setPlans } from '../../store/plans';
+import tempPlans from '../../PlanNames.json';
 interface iLoginProps {}
 
 const Login: React.FC<iLoginProps> = () => {
@@ -34,7 +35,8 @@ const Login: React.FC<iLoginProps> = () => {
     };
 
     const result = await dispatch(userLogin(userDetails));
-    console.log('result', result);
+    const plans = dispatch(setPlans(tempPlans.plans));
+    console.log('result', result, plans);
 
     if (result.meta.requestStatus === 'fulfilled') n('/', { replace: true });
     else {

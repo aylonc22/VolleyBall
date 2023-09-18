@@ -19,6 +19,7 @@ import styles from './Sidebar.module.scss';
 import { useState } from 'react';
 import PlanIcon from '../../assets/svg/plan.jsx';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Sidebar: React.FC = () => {
   const { plans } = useSelector((state: any) => state.plans);
@@ -32,13 +33,15 @@ const Sidebar: React.FC = () => {
       <List sx={{ width: '100%', bgcolor: 'transperent' }}>
         <ListItem disablePadding>
           <ListItemButton>
-            <ListItemAvatar>
-              <Volleyball />
-            </ListItemAvatar>
-            <Typography fontWeight={'bold'}>Volleyball</Typography>
+            <Link to={'/'}>
+              <ListItemAvatar>
+                <Volleyball />
+              </ListItemAvatar>
+              <Typography fontWeight={'bold'}>Volleyball</Typography>
+            </Link>
           </ListItemButton>
         </ListItem>
-        <Divider color='#cccccc' />
+        <Divider color='#cccccc' variant='fullWidth' />
         <ListItemButton onClick={handleClick}>
           <ListItemIcon>
             <PlanIcon />
@@ -48,9 +51,15 @@ const Sidebar: React.FC = () => {
         </ListItemButton>
         <Collapse in={open} timeout='auto' unmountOnExit>
           <List component='div' disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemText primary={``} />
-            </ListItemButton>
+            {plans.map((p: { id: string; Name: string }) => {
+              return (
+                <ListItemButton sx={{ pl: 4 }} key={p.id}>
+                  <Link to={`/plan/${p.id}`}>
+                    <ListItemText primary={p.Name} />
+                  </Link>
+                </ListItemButton>
+              );
+            })}
           </List>
         </Collapse>
       </List>

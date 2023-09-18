@@ -1,0 +1,25 @@
+.plan {
+  color: #fff;
+  padding: 70px 20px;
+  display: flex;
+  flex-flow: column;
+  align-items: start;
+}
+.exersices {
+  display: flex;
+  overflow-x: auto;
+  max-width: 100%;
+
+  ::-webkit-scrollbar {
+    height: 4px;
+    width: 4px;
+    background: gray;
+  }
+  ::-webkit-scrollbar-thumb:horizontal {
+    background: #000;
+    border-radius: 10px;
+  }
+}
+.cards {
+  display: flex;
+}

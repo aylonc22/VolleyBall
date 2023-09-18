@@ -16,6 +16,7 @@ export const userLogin = createAsyncThunk(
       ] = `Bearer ${user.data.token}`;
       localStorage.setItem('token', user.data.token);
       localStorage.setItem('refreshToken', user.data.refreshToken);
+      localStorage.setItem('user', JSON.stringify(user.data.user));
       return user.data.user;
     } catch (error: any) {
       // return custom error message from API if any
@@ -35,7 +36,7 @@ export interface iUser {
 }
 
 const initialState: iUser = {
-  user: {},
+  user: null,
   loading: false,
   error: null,
 };
